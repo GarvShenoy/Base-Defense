@@ -6,7 +6,11 @@ public class TowerGun : TowerBase
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
 
-    protected override void ExecuteAttack(EnemyHealth target)
+    //It first checks if the target, projectile prefab, or fire point is missing and stops execution if any are invalid.
+    //It then calculates the normalized direction vector pointing from the fire point to the target enemy.
+    //Next, it spawns the projectile prefab at the fire point's position and retrieves its Projectile component.
+    //If the script is found, it initializes the projectile with the target direction and attack damage.
+    protected override void ExecuteAttack(EnemyStats target)
     {
         if (!target) return;
 

@@ -202,3 +202,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   enemyHealth: 2
   enemyDefense: 0
+  enemyMoney: 5

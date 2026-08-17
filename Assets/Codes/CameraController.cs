@@ -21,12 +21,17 @@ public class CameraController : MonoBehaviour
         cam = GetComponent<Camera>();
     }
 
+    //Ensures that the methods are called every frame. This allows for smooth key interactions.
     private void Update()
     {
         HandleMovement();
         HandleZoom();
     }
 
+    //Since this method is called every frame, it triggers whenever the key is pressed.
+    //In this case, it reads the WASD keyboard inputs to calculate and normalize a directional movement vector for the camera.
+    //It then scales the vector by moveSpeed and Time.deltaTime to move the camera's position.
+    //Lastly, calls ClampPosition() tO keep the camera within boundaries.  
     private void HandleMovement()
     {
         Vector2 moveInput = Vector2.zero;
@@ -48,6 +53,9 @@ public class CameraController : MonoBehaviour
         ClampPosition();
     }
 
+    //This codes reads the mouse scroll wheel input to adjust the camera's orthographic size based on zoomSpeed.
+    //It also calculates dynamic maximum zoom limits using the boundary dimensions and camera aspect ratio to ensure the view does not extend past the boundaries.
+    //it then clamps the orthographic size within minZoom and dynamicMaxZoom, then calls ClampPosition() to ensure camera does not go beyond boundaries.
     private void HandleZoom()
 {
     if (Mouse.current == null) return;
@@ -68,7 +76,9 @@ public class CameraController : MonoBehaviour
         ClampPosition();
     }
 }
-
+    //This is the clamp method. It calculates the camera's half-height and half-width using its orthographic size and aspect ratio.
+    //This then determines the valid minimum and maximum position limits by insetting the world bounds by the camera's extent.
+    //Finally, it clamps the camera's current transform position within the boundaries determined.
     private void ClampPosition()
     {
         float camHeight = cam.orthographicSize;

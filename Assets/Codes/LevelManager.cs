@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager main;
     
-    public Transform startPoint;
+    //This code just defines the end goal for mutants.
     public Transform endPoint;
 
     private void Awake()
